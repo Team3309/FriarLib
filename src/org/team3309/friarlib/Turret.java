@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.SpeedController;
  * the turret horizontally) and the azimuth (the vertical angle of the turret).
  * This class provides functionality to control the heading and azimuth of any
  * turret as long as the PID values for this class are configured properly. If
- * you need help tuning PID, there are many posts on Chiefdelphi about it.
+ * you need help tuning PID, there are many posts on ChiefDelphi about it.
  * 
  * @author Vinnie
  * 
