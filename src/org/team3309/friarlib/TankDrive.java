@@ -13,6 +13,15 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.Victor;
 
 /**
+ * This class is a collection of advanced tank drive algorithms. The code in
+ * this class is used to make a better tank drive, which is more controllable
+ * and more responsive. This tank drive class has the ability to auto-adjust the
+ * power to each side of the drivetrain so that it drives straight even if one
+ * side is usually slightly faster than the other. As an example, we were using
+ * the precursor to this code in Las Vegas and during one of our practice
+ * matches, we didn't even notice that a motor wasn't running on one side,
+ * because the gyro auto-corrected so that it would still drive straight despite
+ * this setback.
  * 
  * @author Vinnie
  */
@@ -22,33 +31,32 @@ public class TankDrive {
 	 * No PTO
 	 */
 	public static final int PTO_NONE = -1;
-	
+
 	/**
 	 * PTO is on the left side
 	 */
 	public static final int PTO_SIDE_LEFT = 0;
-	
+
 	/**
 	 * PTO is on the right side
 	 */
 	public static final int PTO_SIDE_RIGHT = 1;
-	
+
 	/**
 	 * This is the member variable holding which side the PTO is on
 	 */
 	private int ptoSide = -1;
-	
 
 	/**
 	 * Must be in low gear to shift into PTO
 	 */
 	public static final int LOW_TO_PTO = 0;
-	
+
 	/**
 	 * Must be in high gear to shift into PTO
 	 */
 	public static final int HIGH_TO_PTO = 1;
-	
+
 	/**
 	 * This is the member variable holding which side the PTO is on
 	 */
@@ -61,6 +69,7 @@ public class TankDrive {
 
 	/**
 	 * Get the singleton instance of TankDrive
+	 * 
 	 * @return the singleton instance of TankDrive
 	 */
 	public static TankDrive getInstance() {
@@ -74,10 +83,12 @@ public class TankDrive {
 	private boolean straightPidEnabled = false;
 
 	/**
-	 * This class implements PIDSource and PIDOutput for a straight driving PID controller
-	 * It does this by returning an average of the left and right side encoder counts
+	 * This class implements PIDSource and PIDOutput for a straight driving PID
+	 * controller It does this by returning an average of the left and right
+	 * side encoder counts
+	 * 
 	 * @author Vinnie
-	 *
+	 * 
 	 */
 	private class StraightPID implements PIDSource, PIDOutput {
 
@@ -92,7 +103,6 @@ public class TankDrive {
 		}
 	}
 
-	
 	private Victor[] leftVictors = null;
 	private Victor[] rightVictors = null;
 
@@ -120,7 +130,7 @@ public class TankDrive {
 	 * Max angular rate of change commandable by the joystick
 	 */
 	private double MAX_ANGULAR_RATE_OF_CHANGE = 720;
-	
+
 	private double skimGain = .25;
 
 	/**
@@ -372,7 +382,10 @@ public class TankDrive {
 
 		/**
 		 * Set the Victors for the left side of the drivetrain
-		 * @param ports an array of ports for the victor motor controllers on the left side
+		 * 
+		 * @param ports
+		 *            an array of ports for the victor motor controllers on the
+		 *            left side
 		 */
 		public Builder left(int[] ports) {
 			drive.leftVictors = new Victor[ports.length];
@@ -384,7 +397,10 @@ public class TankDrive {
 
 		/**
 		 * Set the Victors for the right side of the drivetrain
-		 * @param ports an array of ports for the victor motor controllers on the right side
+		 * 
+		 * @param ports
+		 *            an array of ports for the victor motor controllers on the
+		 *            right side
 		 */
 		public Builder right(int[] ports) {
 			drive.rightVictors = new Victor[ports.length];
@@ -396,8 +412,11 @@ public class TankDrive {
 
 		/**
 		 * Configure the main drive shifters
-		 * @param forward the forward channel of the DoubleSolenoid
-		 * @param reverse the reverse channel of the DoubleSolenoid
+		 * 
+		 * @param forward
+		 *            the forward channel of the DoubleSolenoid
+		 * @param reverse
+		 *            the reverse channel of the DoubleSolenoid
 		 */
 		public Builder driveShifter(int forward, int reverse) {
 			drive.driveShifter = new DoubleSolenoid(forward, reverse);
@@ -406,7 +425,9 @@ public class TankDrive {
 
 		/**
 		 * Configure the PTO shifter
-		 * @param port the channel on the solenoid module for the PTO shifter
+		 * 
+		 * @param port
+		 *            the channel on the solenoid module for the PTO shifter
 		 * @return
 		 */
 		public Builder ptoShifter(int port) {
@@ -416,8 +437,11 @@ public class TankDrive {
 
 		/**
 		 * Set up the left side encoder
-		 * @param a the a channel of the encoder
-		 * @param b the b channel of the encoder
+		 * 
+		 * @param a
+		 *            the a channel of the encoder
+		 * @param b
+		 *            the b channel of the encoder
 		 */
 		public Builder leftEncoder(int a, int b) {
 			drive.leftEncoder = new Encoder(a, b, true,
@@ -427,8 +451,11 @@ public class TankDrive {
 
 		/**
 		 * Set up the right side encoder
-		 * @param a the a channel of the encoder
-		 * @param b the b channel of the encoder
+		 * 
+		 * @param a
+		 *            the a channel of the encoder
+		 * @param b
+		 *            the b channel of the encoder
 		 */
 		public Builder rightEncoder(int a, int b) {
 			drive.rightEncoder = new Encoder(a, b, false,
@@ -438,7 +465,9 @@ public class TankDrive {
 
 		/**
 		 * Configure the gyro
-		 * @param port the port for the gyro on the Analog Module
+		 * 
+		 * @param port
+		 *            the port for the gyro on the Analog Module
 		 */
 		public Builder gyro(int port) {
 			drive.gyro = new SuperGyro(port);
@@ -447,8 +476,11 @@ public class TankDrive {
 
 		/**
 		 * Set the side that the PTO is on
-		 * @param side the side of the PTO
-		 * 	either @link{TankDrive#PTO_SIDE_LEFT PTO_SIDE_LEFT} or @link{TankDrive#PTO_SIDE_RIGHT PTO_SIDE_RIGHT}
+		 * 
+		 * @param side
+		 *            the side of the PTO either @link{TankDrive#PTO_SIDE_LEFT
+		 *            PTO_SIDE_LEFT} or @link{TankDrive#PTO_SIDE_RIGHT
+		 *            PTO_SIDE_RIGHT}
 		 */
 		public Builder pto(int side) {
 			drive.ptoSide = side;
@@ -477,8 +509,9 @@ public class TankDrive {
 
 	/**
 	 * Use this class to configure gyro P constants
+	 * 
 	 * @author Vinnie
-	 *
+	 * 
 	 */
 	public static final class GyroConfig {
 
@@ -488,8 +521,8 @@ public class TankDrive {
 		public double kPLowGear = 0.001;
 
 		/**
-		 * P value used for gyro P controller when joysticks are at
-		 * stopped position
+		 * P value used for gyro P controller when joysticks are at stopped
+		 * position
 		 */
 		public double kPStopped = 0.01;
 
@@ -499,14 +532,14 @@ public class TankDrive {
 		public double kPHighGear = 0.02;
 
 		/**
-		 * P value used for gyro P controller when driving at low
-		 * speed (less than .5)
+		 * P value used for gyro P controller when driving at low speed (less
+		 * than .5)
 		 */
 		public double kPLowSpeed = 0.03;
 
 		/**
-		 * Max angular rate of change that can be commanded by the
-		 * joystick Units are degrees/second
+		 * Max angular rate of change that can be commanded by the joystick
+		 * Units are degrees/second
 		 */
 		public double maxAngularRateOfChange = 720;
 

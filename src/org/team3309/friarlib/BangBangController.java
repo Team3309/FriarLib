@@ -3,6 +3,15 @@ package org.team3309.friarlib;
 import edu.wpi.first.wpilibj.Counter;
 import edu.wpi.first.wpilibj.SpeedController;
 
+/**
+ * This class contains code to control the speed of a wheel using bang-bang
+ * control. Bang-bang only works if the motor controller is jumpered for coast
+ * mode instead of brake mode. This should be the defualt for Victors. Do not
+ * use bang-bang with a Jaguar! Only Talons and Victors are supported.
+ * 
+ * @author Vinnie
+ * 
+ */
 public class BangBangController implements Runnable {
 
 	private Thread thread = null;
