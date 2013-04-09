@@ -23,6 +23,12 @@ public class BangBangController implements Runnable {
 
 	private volatile boolean enabled = false;
 
+	/**
+	 * Create a new bang-bang motor controller.
+	 * @param controller the underlying speed controller (a Victor or Talon, no Jaguars)
+	 * @param encoder a Counter object for the speed sensor (usually a KOP photosensor)
+	 * @param countsPerRev how many counts the encoder reads per revolution
+	 */
 	public BangBangController(SpeedController controller, Counter encoder,
 			int countsPerRev) {
 		this.motor = controller;
@@ -32,12 +38,28 @@ public class BangBangController implements Runnable {
 		thread.start();
 	}
 
+	/**
+	 * Enable the bang-bang controller.
+	 * When enabled, the controller will run the motor to reach the desired rpm
+	 */
 	public void enable() {
 		enabled = true;
 	}
 
+	/**
+	 * Disable the bang-bang controller.
+	 * When disabled, the motor is constantly run at 0.
+	 */
 	public void disable() {
 		enabled = false;
+	}
+	
+	/**
+	 * Set the target speed of the wheel
+	 * @param rpm the rpm of the wheel, this is independent of the number of counts per revolution
+	 */
+	public void setTargetRpm(double rpm){
+		this.targetRpm = rpm;
 	}
 
 	/**
@@ -47,6 +69,7 @@ public class BangBangController implements Runnable {
 	private int infinityCounts = 0;
 	private double lastSpeed = 0;
 
+	
 	@Override
 	public void run() {
 		while (true) {
