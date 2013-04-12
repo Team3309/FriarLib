@@ -1,7 +1,7 @@
 package org.team3309.friarlib.filter;
 
 /**
- * This {@link Filter, Filter} is a max change filter. It only lets the input
+ * This {@link Filter} is a max change filter. It only lets the input
  * change by a specified amount. An example use of this would be applying it to
  * a joystick value, so that the robot response is smoother and doesn't seem as
  * jarring to the drivers.
@@ -19,7 +19,7 @@ public class MaxChangeFilter implements Filter {
 	 * 
 	 * @param maxChange
 	 *            the maximum amount of change to allow - in 2013 we used a
-	 *            value of .05
+	 *            value of .05 for the drive joysticks
 	 */
 	public MaxChangeFilter(double maxChange) {
 		this.maxChange = maxChange;

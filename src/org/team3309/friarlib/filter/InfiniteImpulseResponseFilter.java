@@ -54,6 +54,17 @@ public class InfiniteImpulseResponseFilter implements Filter {
 	}
 
 	/**
+	 * Get the current filter strength. This method is provided if the user
+	 * wants to change the filter strength on the fly and needs to know what the
+	 * current value is.
+	 * 
+	 * @return
+	 */
+	public double getFilterStrength() {
+		return this.mFilterStrength;
+	}
+
+	/**
 	 * This returns a filtered value based on the input. For an IIR filter, this
 	 * is based on every previous value.
 	 */
