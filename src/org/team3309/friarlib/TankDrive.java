@@ -116,11 +116,9 @@ public class TankDrive {
 	private PIDController straightPid = null;
 
 	private boolean gyroEnabled = true;
-	private double GYRO_KP_LOW_GEAR = .001;
-	private double GYRO_KP_STOPPED = .01;
-	private double GYRO_KP_LOW_SPEED = .03;
-	private double GYRO_KP_HIGH_GEAR = .02;
-	private double gyroKp = GYRO_KP_HIGH_GEAR;
+
+	private GyroConfig gyroConfig = null;
+	private double gyroKp = 0.02;
 
 	private boolean isLowGear = false;
 
@@ -165,23 +163,15 @@ public class TankDrive {
 								// make the robot drive forward
 
 		if (gyroEnabled) {
-			if (Math.abs(throttle) < .1 && Math.abs(turn) < .1) // do nothing
-																// when there is
-																// no driving
-																// commands - do
-																// this to
-																// prevent the
-																// waggle -
-																// James
-			{
-				gyroKp = GYRO_KP_STOPPED;
+			if (Math.abs(throttle) < .1 && Math.abs(turn) < .1) {
+				gyroKp = gyroConfig.kPStopped;
 			} else if (Math.abs(throttle) < .5) {
-				gyroKp = GYRO_KP_LOW_SPEED;
+				gyroKp = gyroConfig.kPLowSpeed;
 			}
 			if (isLowGear) {
-				gyroKp = GYRO_KP_LOW_GEAR;
+				gyroKp = gyroConfig.kPLowGear;
 			} else {
-				gyroKp = GYRO_KP_HIGH_GEAR;
+				gyroKp = gyroConfig.kPHighGear;
 			}
 
 			double omega = gyro.getAngularRateOfChange();
@@ -206,7 +196,7 @@ public class TankDrive {
 	 */
 	public void highGear() {
 		driveShifter.set(DoubleSolenoid.Value.kReverse);
-		gyroKp = GYRO_KP_HIGH_GEAR;
+		gyroKp = gyroConfig.kPHighGear;
 		isLowGear = false;
 	}
 
@@ -215,7 +205,7 @@ public class TankDrive {
 	 */
 	public void lowGear() {
 		driveShifter.set(DoubleSolenoid.Value.kForward);
-		gyroKp = GYRO_KP_LOW_GEAR;
+		gyroKp = gyroConfig.kPLowGear;
 		isLowGear = true;
 	}
 
@@ -354,6 +344,18 @@ public class TankDrive {
 	}
 
 	/**
+	 * Return the Gyro configuration. This is provided in case someone wants to
+	 * modify the constants for different modes of operation. Any changes to
+	 * this object will automatically be reflected in the drive behavior.
+	 * 
+	 * @return a {@link #GyroConfig GyroConfig} object that contains the current
+	 *         configuration values
+	 */
+	public GyroConfig getGyroConfig() {
+		return gyroConfig;
+	}
+
+	/**
 	 * This is used internally to run any code after the object is created
 	 */
 	private void onBuild() {
@@ -488,11 +490,7 @@ public class TankDrive {
 		}
 
 		public Builder gyroConfig(GyroConfig config) {
-			drive.GYRO_KP_HIGH_GEAR = config.kPHighGear;
-			drive.GYRO_KP_LOW_GEAR = config.kPLowGear;
-			drive.GYRO_KP_LOW_SPEED = config.kPLowSpeed;
-			drive.GYRO_KP_STOPPED = config.kPStopped;
-			drive.MAX_ANGULAR_RATE_OF_CHANGE = config.maxAngularRateOfChange;
+			drive.gyroConfig = config;
 			return this;
 		}
 
@@ -543,6 +541,19 @@ public class TankDrive {
 		 */
 		public double maxAngularRateOfChange = 720;
 
+		/**
+		 * Returns a string representation of this GyroConfig. The String
+		 * contains all of the configuration parameters
+		 */
+		public String toString() {
+			String s = "Gyro Configuration\n";
+			s += "Low Gear:\t" + kPLowGear + "\n";
+			s += "Low Speed:\t" + kPLowSpeed + "\n";
+			s += "High Gear:\t" + kPHighGear + "\n";
+			s += "Stopped:\t" + kPStopped + "\n";
+			s += "Max Speed:\t" + maxAngularRateOfChange;
+			return s;
+		}
 	}
 
 }
