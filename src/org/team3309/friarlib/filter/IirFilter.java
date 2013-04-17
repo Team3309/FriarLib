@@ -10,7 +10,7 @@ package org.team3309.friarlib.filter;
  * @author Vinnie
  * 
  */
-public class InfiniteImpulseResponseFilter implements Filter {
+public class IirFilter implements Filter {
 
 	private double previousFilteredValue = 0;
 
@@ -22,7 +22,7 @@ public class InfiniteImpulseResponseFilter implements Filter {
 	 * @param strength
 	 *            the filter strength. Must be between -1 and 1
 	 */
-	public InfiniteImpulseResponseFilter(double strength) {
+	public IirFilter(double strength) {
 		setFilterStrength(strength);
 	}
 
