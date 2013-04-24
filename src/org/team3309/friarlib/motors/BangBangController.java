@@ -1,4 +1,4 @@
-package org.team3309.friarlib;
+package org.team3309.friarlib.motors;
 
 import edu.wpi.first.wpilibj.Counter;
 import edu.wpi.first.wpilibj.SpeedController;
