@@ -122,7 +122,7 @@ public class TankDrive {
 
 	private boolean isLowGear = false;
 
-	private SuperGyro gyro;
+	private FriarGyro gyro;
 
 	/**
 	 * Max angular rate of change commandable by the joystick
@@ -472,7 +472,7 @@ public class TankDrive {
 		 *            the port for the gyro on the Analog Module
 		 */
 		public Builder gyro(int port) {
-			drive.gyro = new SuperGyro(port);
+			drive.gyro = new FriarGyro(port);
 			return this;
 		}
 

@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.Timer;
  *
  * @author vmagr_000
  */
-public class SuperGyro {
+public class FriarGyro {
     
     private AnalogChannel channel = null;
     private double voltageOffset = 2.5;
@@ -21,7 +21,7 @@ public class SuperGyro {
     private static final double kVoltsPerDegreePerSecond = 0.007; //7mV per degree per sec
     private AccumulatorResult result;
     
-    public SuperGyro(int port){
+    public FriarGyro(int port){
         channel = new AnalogChannel(port);
         
         initGyro();
