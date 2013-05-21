@@ -7,6 +7,11 @@ package org.team3309.friarlib.exception;
  */
 public class NotInitializedException extends RuntimeException {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public NotInitializedException(String msg) {
 		super(msg);
 	}

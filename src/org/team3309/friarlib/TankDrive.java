@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.Victor;
 
@@ -103,8 +104,8 @@ public class TankDrive {
 		}
 	}
 
-	private Victor[] leftVictors = null;
-	private Victor[] rightVictors = null;
+	private SpeedController[] leftMotors = null;
+	private SpeedController[] rightMotors = null;
 
 	private DoubleSolenoid driveShifter = null;
 
@@ -122,12 +123,12 @@ public class TankDrive {
 
 	private boolean isLowGear = false;
 
-	private SuperGyro gyro;
+	private FriarGyro gyro;
 
 	/**
 	 * Max angular rate of change commandable by the joystick
 	 */
-	private double MAX_ANGULAR_RATE_OF_CHANGE = 720;
+	private double maxAngularRateOfChange = 720;
 
 	private double skimGain = .25;
 
@@ -175,7 +176,7 @@ public class TankDrive {
 			}
 
 			double omega = gyro.getAngularRateOfChange();
-			double desiredOmega = turn * MAX_ANGULAR_RATE_OF_CHANGE;
+			double desiredOmega = turn * maxAngularRateOfChange;
 
 			turn = (omega - desiredOmega) * gyroKp;
 		} else
@@ -254,8 +255,8 @@ public class TankDrive {
 	 * @param val
 	 */
 	private void setLeft(double val) {
-		for (int i = 0; i < leftVictors.length; i++) {
-			leftVictors[i].set(val);
+		for (int i = 0; i < leftMotors.length; i++) {
+			leftMotors[i].set(val);
 		}
 	}
 
@@ -266,8 +267,8 @@ public class TankDrive {
 	 * @param val
 	 */
 	private void setRight(double val) {
-		for (int i = 0; i < rightVictors.length; i++) {
-			rightVictors[i].set(val);
+		for (int i = 0; i < rightMotors.length; i++) {
+			rightMotors[i].set(val);
 		}
 	}
 
@@ -390,9 +391,9 @@ public class TankDrive {
 		 *            left side
 		 */
 		public Builder left(int[] ports) {
-			drive.leftVictors = new Victor[ports.length];
+			drive.leftMotors = new Victor[ports.length];
 			for (int i = 0; i < ports.length; i++) {
-				drive.leftVictors[i] = new Victor(ports[i]);
+				drive.leftMotors[i] = new Victor(ports[i]);
 			}
 			return this;
 		}
@@ -405,10 +406,34 @@ public class TankDrive {
 		 *            right side
 		 */
 		public Builder right(int[] ports) {
-			drive.rightVictors = new Victor[ports.length];
+			drive.rightMotors = new Victor[ports.length];
 			for (int i = 0; i < ports.length; i++) {
-				drive.rightVictors[i] = new Victor(ports[i]);
+				drive.rightMotors[i] = new Victor(ports[i]);
 			}
+			return this;
+		}
+		
+		/**
+		 * Set the motor controllers for the left side of the drivetrain
+		 * 
+		 * @param ports
+		 *            an array of ports for the victor motor controllers on the
+		 *            left side
+		 */
+		public Builder left(SpeedController[] left) {
+			drive.leftMotors = left;
+			return this;
+		}
+
+		/**
+		 * Set the motor controllers for the right side of the drivetrain
+		 * 
+		 * @param ports
+		 *            an array of ports for the victor motor controllers on the
+		 *            right side
+		 */
+		public Builder right(SpeedController[] right) {
+			drive.rightMotors = right;
 			return this;
 		}
 
@@ -472,7 +497,7 @@ public class TankDrive {
 		 *            the port for the gyro on the Analog Module
 		 */
 		public Builder gyro(int port) {
-			drive.gyro = new SuperGyro(port);
+			drive.gyro = new FriarGyro(port);
 			return this;
 		}
 
