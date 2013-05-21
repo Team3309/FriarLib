@@ -64,8 +64,18 @@ public class FriarGyro {
      * Get the rate of change of the angle
      * @return rate of change in degrees/second
      */
+    @Deprecated
     public double getAngularRateOfChange(){
         double rate = (channel.getVoltage() - voltageOffset) / kVoltsPerDegreePerSecond; 
+        return rate;
+    }
+    
+    /**
+     * Get the rate of change of the angle
+     * @return rate of change in degrees/second
+     */
+    public double getAngularVelocity(){
+    	double rate = (channel.getVoltage() - voltageOffset) / kVoltsPerDegreePerSecond; 
         return rate;
     }
     

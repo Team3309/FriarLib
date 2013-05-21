@@ -175,7 +175,7 @@ public class TankDrive {
 				gyroKp = gyroConfig.kPHighGear;
 			}
 
-			double omega = gyro.getAngularRateOfChange();
+			double omega = gyro.getAngularVelocity();
 			double desiredOmega = turn * maxAngularRateOfChange;
 
 			turn = (omega - desiredOmega) * gyroKp;
