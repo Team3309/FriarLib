@@ -47,9 +47,9 @@ public class IirFilter implements Filter {
 	 * @param strength
 	 */
 	public void setFilterStrength(double strength) {
-		if (Math.abs(strength) > 1)
+		if (strength > 1 || strength < 0)
 			throw new IllegalArgumentException(
-					"Filter strength must be between -1 and 1");
+					"Filter strength must be between 0 and 1");
 		this.mFilterStrength = strength;
 	}
 
