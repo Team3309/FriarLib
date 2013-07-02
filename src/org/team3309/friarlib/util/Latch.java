@@ -9,7 +9,7 @@ package org.team3309.friarlib.util;
  */
 public class Latch {
 
-	private boolean lastVal;
+	private boolean lastVal = false;
 
 	/**
 	 * Get the state of the latch after using this new value
