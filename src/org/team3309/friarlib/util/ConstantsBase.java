@@ -7,7 +7,8 @@ import java.util.Vector;
 import javax.microedition.io.Connector;
 
 /**
- * This class is from Team 254's library Manages constant values used everywhere
+ * This class is from Team 254's library.
+ * Manages constant values used everywhere
  * in the robot code.
  * 
  * Copyright (c) 2013, Team 254 All rights reserved.
