@@ -412,13 +412,13 @@ public class TankDrive {
 			}
 			return this;
 		}
-		
+
 		/**
 		 * Set the motor controllers for the left side of the drivetrain
 		 * 
 		 * @param ports
-		 *            an array of ports for the victor motor controllers on the
-		 *            left side
+		 *            an array of SpeedControllers that control the left side
+		 *            motors
 		 */
 		public Builder left(SpeedController[] left) {
 			drive.leftMotors = left;
@@ -429,8 +429,8 @@ public class TankDrive {
 		 * Set the motor controllers for the right side of the drivetrain
 		 * 
 		 * @param ports
-		 *            an array of ports for the victor motor controllers on the
-		 *            right side
+		 *            an array of SpeedController that control the right side
+		 *            motors
 		 */
 		public Builder right(SpeedController[] right) {
 			drive.rightMotors = right;
@@ -446,7 +446,18 @@ public class TankDrive {
 		 *            the reverse channel of the DoubleSolenoid
 		 */
 		public Builder driveShifter(int forward, int reverse) {
-			drive.driveShifter = new DoubleSolenoid(forward, reverse);
+			return driveShifter(new DoubleSolenoid(forward, reverse));
+		}
+
+		/**
+		 * Configure the main drive shifters
+		 * 
+		 * @param driveShifter
+		 *            a DoubleSolenoid that is the drive shifter
+		 * @return
+		 */
+		public Builder driveShifter(DoubleSolenoid driveShifter) {
+			drive.driveShifter = driveShifter;
 			return this;
 		}
 
@@ -458,12 +469,24 @@ public class TankDrive {
 		 * @return
 		 */
 		public Builder ptoShifter(int port) {
-			drive.ptoShifter = new Solenoid(port);
+			return ptoShifter(new Solenoid(port));
+		}
+
+		/**
+		 * Configure the PTO Shifter
+		 * 
+		 * @param ptoShifter
+		 *            a Solenoid that will shift in/out of the PTO gear
+		 * @return
+		 */
+		public Builder ptoShifter(Solenoid ptoShifter) {
+			drive.ptoShifter = ptoShifter;
 			return this;
 		}
 
 		/**
-		 * Set up the left side encoder
+		 * Set up the left side encoder. Initializes the encoder with k1X
+		 * counting type
 		 * 
 		 * @param a
 		 *            the a channel of the encoder
@@ -471,8 +494,21 @@ public class TankDrive {
 		 *            the b channel of the encoder
 		 */
 		public Builder leftEncoder(int a, int b) {
-			drive.leftEncoder = new Encoder(a, b, true,
-					CounterBase.EncodingType.k1X);
+			return leftEncoder(new Encoder(a, b, true,
+					CounterBase.EncodingType.k1X));
+		}
+
+		/**
+		 * Set up the left side encoder
+		 * 
+		 * @param leftEncoder
+		 *            Encoder for the left side of the drivetrain. Highly
+		 *            recommended that this be configured with the 1X counting
+		 *            type.
+		 * @return
+		 */
+		public Builder leftEncoder(Encoder leftEncoder) {
+			drive.leftEncoder = leftEncoder;
 			return this;
 		}
 
@@ -491,13 +527,41 @@ public class TankDrive {
 		}
 
 		/**
-		 * Configure the gyro
+		 * Set up the right side encoder
+		 * 
+		 * @param rightEncoder
+		 *            Encoder for the right side of the drivetrain. Highly
+		 *            recommended that this be configured with the 1X counting
+		 *            type.
+		 * @return
+		 */
+		public Builder rightEncoder(Encoder rightEncoder) {
+			drive.rightEncoder = rightEncoder;
+			return this;
+		}
+
+		/**
+		 * Set up the gyro. The gyro should be located as close to the center as
+		 * possible.
 		 * 
 		 * @param port
 		 *            the port for the gyro on the Analog Module
 		 */
 		public Builder gyro(int port) {
 			drive.gyro = new FriarGyro(port);
+			return this;
+		}
+
+		/**
+		 * Set up the gyro. The gyro should be located as close to the center as
+		 * possible.
+		 * 
+		 * @param gyro
+		 *            the drivetrain gyro
+		 * @return
+		 */
+		public Builder gyro(FriarGyro gyro) {
+			drive.gyro = gyro;
 			return this;
 		}
 
@@ -526,6 +590,7 @@ public class TankDrive {
 
 		public TankDrive build() {
 			drive.onBuild();
+			TankDrive.instance = drive;
 			return drive;
 		}
 	}
