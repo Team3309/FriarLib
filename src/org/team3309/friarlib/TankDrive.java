@@ -29,34 +29,15 @@ import edu.wpi.first.wpilibj.Victor;
 public class TankDrive {
 
 	/**
-	 * No PTO
-	 */
-	public static final int PTO_NONE = -1;
-
-	/**
-	 * PTO is on the left side
-	 */
-	public static final int PTO_SIDE_LEFT = 0;
-
-	/**
-	 * PTO is on the right side
-	 */
-	public static final int PTO_SIDE_RIGHT = 1;
-
-	/**
 	 * This is the member variable holding which side the PTO is on
 	 */
-	private int ptoSide = -1;
+	private PtoSide ptoSide = null;
 
 	/**
-	 * Must be in low gear to shift into PTO
+	 * This is the member variable holding the sequence of shifting necessary to
+	 * shift into PTO
 	 */
-	public static final int LOW_TO_PTO = 0;
-
-	/**
-	 * Must be in high gear to shift into PTO
-	 */
-	public static final int HIGH_TO_PTO = 1;
+	private PtoSequence ptoSequence = null;
 
 	private DoubleSolenoid.Value highGearVal = DoubleSolenoid.Value.kReverse;
 	private DoubleSolenoid.Value lowGearVal = DoubleSolenoid.Value.kForward;
@@ -222,17 +203,18 @@ public class TankDrive {
 	public void engagePto() {
 		// no point in checking if using a double solenoid or not, because we
 		// have to use a double solenoid if we're using pto
-		if (ptoShifter != null && ptoSide != PTO_NONE) {
-			if (ptoSide == LOW_TO_PTO) {
+		if (ptoShifter != null && ptoSide.val != PtoSide.kNoneVal) {
+			if (ptoSequence.val == PtoSequence.kFromLowVal) {
 				lowGear();
-			} else if (ptoSide == HIGH_TO_PTO) {
+			} else if (ptoSequence.val == PtoSequence.kFromHighVal) {
 				highGear();
 			}
 			driveShifterDoubleSolenoid.set(DoubleSolenoid.Value.kOff);
 			Timer.delay(.1);
 			ptoShifter.set(true);
 		} else {
-			System.err.println("PTO has not been configured for this drivetrain");
+			System.err
+					.println("PTO has not been configured for this drivetrain");
 		}
 	}
 
@@ -240,18 +222,20 @@ public class TankDrive {
 	 * Disengage the PTO
 	 */
 	public void disengagePto() {
-		if (ptoShifter != null && ptoSide != PTO_NONE) {
+		if (ptoShifter != null && ptoSide.val != PtoSide.kNoneVal) {
 			ptoShifter.set(false);
 		} else {
-			System.err.println("PTO has not been configured for this drivetrain");
+			System.err
+					.println("PTO has not been configured for this drivetrain");
 		}
 	}
 
 	/**
-	 * Calls {@link #drive(double, double) drive} with 0,0
+	 * Set the left and right motors to 0
 	 */
 	public void stop() {
-		drive(0, 0);
+		setLeft(0);
+		setRight(0);
 	}
 
 	/**
@@ -284,9 +268,9 @@ public class TankDrive {
 	 * @param val
 	 */
 	public void setPto(double val) {
-		if (ptoSide == PTO_SIDE_LEFT) {
+		if (ptoSide.val == PtoSide.kLeftVal) {
 			setLeft(val);
-		} else if (ptoSide == PTO_SIDE_RIGHT) {
+		} else if (ptoSide.val == PtoSide.kRightVal) {
 			setRight(val);
 		} else {
 			System.out
@@ -381,7 +365,7 @@ public class TankDrive {
 		 * straightPid.enable();
 		 */
 	}
-
+	
 	/**
 	 * Use this class to create a new TankDrive object
 	 * 
@@ -650,17 +634,19 @@ public class TankDrive {
 		 * Set the side that the PTO is on
 		 * 
 		 * @param side
-		 *            the side of the PTO either @link{TankDrive#PTO_SIDE_LEFT
-		 *            PTO_SIDE_LEFT} or @link{TankDrive#PTO_SIDE_RIGHT
-		 *            PTO_SIDE_RIGHT}
 		 */
-		public Builder pto(int side) {
+		public Builder ptoSide(PtoSide side) {
 			drive.ptoSide = side;
 			return this;
 		}
 
 		public Builder gyroConfig(GyroConfig config) {
 			drive.gyroConfig = config;
+			return this;
+		}
+
+		public Builder ptoSequence(PtoSequence seq) {
+			drive.ptoSequence = seq;
 			return this;
 		}
 
@@ -720,6 +706,38 @@ public class TankDrive {
 			s += "Max Speed:\t" + maxAngularRateOfChange;
 			return s;
 		}
+	}
+
+	public static final class PtoSide {
+
+		private int val;
+
+		private PtoSide(int val) {
+			this.val = val;
+		}
+
+		private static final int kLeftVal = 0;
+		private static final int kRightVal = 1;
+		private static final int kNoneVal = -1;
+
+		public static final PtoSide kLeft = new PtoSide(kLeftVal);
+		public static final PtoSide kRight = new PtoSide(kRightVal);
+		public static final PtoSide kNone = new PtoSide(kNoneVal);
+	}
+
+	public static final class PtoSequence {
+		private int val;
+
+		private PtoSequence(int val) {
+			this.val = val;
+		}
+
+		private static final int kFromLowVal = 0;
+		private static final int kFromHighVal = 1;
+
+		public static final PtoSequence kFromLow = new PtoSequence(kFromLowVal);
+		public static final PtoSequence kFromHigh = new PtoSequence(
+				kFromHighVal);
 	}
 
 }
