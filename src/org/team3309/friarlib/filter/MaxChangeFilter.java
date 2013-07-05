@@ -45,9 +45,9 @@ public class MaxChangeFilter implements Filter {
 	public double update(double val) {
 		double filteredVal = 0;
 		if (val > lastVal + maxChange)
-			filteredVal = val + maxChange;
+			filteredVal = lastVal + maxChange;
 		else if (val < lastVal - maxChange)
-			filteredVal = val - maxChange;
+			filteredVal = lastVal - maxChange;
 		else
 			filteredVal = val;
 
