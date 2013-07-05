@@ -237,8 +237,7 @@ public class TankDrive {
 			Timer.delay(.1);
 			ptoShifter.set(true);
 		} else {
-			System.out
-					.println("PTO has not been configured for this drivetrain");
+			System.err.println("PTO has not been configured for this drivetrain");
 		}
 	}
 
@@ -249,8 +248,7 @@ public class TankDrive {
 		if (ptoShifter != null && ptoSide != PTO_NONE) {
 			ptoShifter.set(false);
 		} else {
-			System.out
-					.println("PTO has not been configured for this drivetrain");
+			System.err.println("PTO has not been configured for this drivetrain");
 		}
 	}
 
