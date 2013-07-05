@@ -22,7 +22,7 @@ public class MaxChangeFilter implements Filter {
 	 *            value of .05 for the drive joysticks
 	 */
 	public MaxChangeFilter(double maxChange) {
-		this.maxChange = maxChange;
+		this.maxChange = Math.abs(maxChange);
 	}
 
 	/**
@@ -30,7 +30,7 @@ public class MaxChangeFilter implements Filter {
 	 * @param maxChange
 	 */
 	public void setMaxChange(double maxChange) {
-		this.maxChange = maxChange;
+		this.maxChange = Math.abs(maxChange);
 	}
 
 	/**
