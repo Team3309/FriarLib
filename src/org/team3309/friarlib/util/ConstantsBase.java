@@ -35,7 +35,6 @@ import javax.microedition.io.Connector;
  * @author brandon.gonzalez.451@gmail.com (Brandon Gonzalez)
  */
 public abstract class ConstantsBase {
-	@SuppressWarnings("rawtypes")
 	private static final Vector constants = new Vector();
 	private static final String CONSTANTS_FILE_PATH = "Constants.txt";
 

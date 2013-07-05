@@ -8,7 +8,6 @@ public class Util {
 	 * Returns the array of substrings obtained by dividing the given input
 	 * string at each occurrence of the given delimiter.
 	 */
-	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public static String[] split(String input, String delimiter) {
 		Vector node = new Vector();
 		int index = input.indexOf(delimiter);
