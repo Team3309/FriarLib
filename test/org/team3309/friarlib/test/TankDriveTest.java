@@ -1,10 +1,12 @@
-package org.team3309.friarlib;
+package org.team3309.friarlib.test;
 
 import static org.easymock.EasyMock.*;
 import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.team3309.friarlib.FriarGyro;
+import org.team3309.friarlib.TankDrive;
 import org.team3309.friarlib.TankDrive.GyroConfig;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
