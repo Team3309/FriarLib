@@ -104,7 +104,6 @@ public abstract class ConstantsBase {
 		private String name;
 		private double value;
 
-		@SuppressWarnings("unchecked")
 		public Constant(String name, double value) {
 			this.name = name;
 			this.value = value;
