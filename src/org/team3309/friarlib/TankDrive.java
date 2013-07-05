@@ -63,6 +63,11 @@ public class TankDrive {
 	 */
 	private int ptoShifting = -1;
 
+	private DoubleSolenoid.Value highGearVal = DoubleSolenoid.Value.kReverse;
+	private DoubleSolenoid.Value lowGearVal = DoubleSolenoid.Value.kForward;
+	private boolean highGearBool = false;
+	private boolean lowGearBool = true;
+
 	/**
 	 * This holds the singleton instance of TankDrive
 	 */
@@ -107,7 +112,8 @@ public class TankDrive {
 	private SpeedController[] leftMotors = null;
 	private SpeedController[] rightMotors = null;
 
-	private DoubleSolenoid driveShifter = null;
+	private DoubleSolenoid driveShifterDoubleSolenoid = null;
+	private Solenoid driveShifter = null;
 
 	private Solenoid ptoShifter = null;
 
@@ -124,11 +130,6 @@ public class TankDrive {
 	private boolean isLowGear = false;
 
 	private FriarGyro gyro;
-
-	/**
-	 * Max angular rate of change commandable by the joystick
-	 */
-	private double maxAngularRateOfChange = 720;
 
 	private double skimGain = .25;
 
@@ -160,33 +161,37 @@ public class TankDrive {
 	 *            of change
 	 */
 	public void drive(double throttle, double turn) {
-		throttle = -throttle; // flip throttle so that a positive value will
-								// make the robot drive forward
-
 		if (gyroEnabled) {
 			if (Math.abs(throttle) < .1 && Math.abs(turn) < .1) {
 				gyroKp = gyroConfig.kPStopped;
 			} else if (Math.abs(throttle) < .5) {
 				gyroKp = gyroConfig.kPLowSpeed;
-			}
-			if (isLowGear) {
+			} else if (isLowGear) {
 				gyroKp = gyroConfig.kPLowGear;
 			} else {
 				gyroKp = gyroConfig.kPHighGear;
 			}
 
 			double omega = gyro.getAngularVelocity();
-			double desiredOmega = turn * maxAngularRateOfChange;
+			double desiredOmega = turn * gyroConfig.maxAngularRateOfChange;
 
 			turn = (omega - desiredOmega) * gyroKp;
-		} else
-			turn = -turn;
+		}
 
 		double t_left = throttle + turn;
 		double t_right = throttle - turn;
 
 		double left = t_left + skim(t_right);
 		double right = t_right + skim(t_left);
+
+		if (left > 1)
+			left = 1;
+		else if (left < 1)
+			left = -1;
+		if (right > 1)
+			right = 1;
+		else if (right < -1)
+			right = -1;
 
 		setLeft(-left);
 		setRight(right);
@@ -196,7 +201,10 @@ public class TankDrive {
 	 * Shift into high gear
 	 */
 	public void highGear() {
-		driveShifter.set(DoubleSolenoid.Value.kReverse);
+		if (driveShifterDoubleSolenoid != null)
+			driveShifterDoubleSolenoid.set(highGearVal);
+		else
+			driveShifter.set(highGearBool);
 		gyroKp = gyroConfig.kPHighGear;
 		isLowGear = false;
 	}
@@ -205,7 +213,10 @@ public class TankDrive {
 	 * Shift into low gear
 	 */
 	public void lowGear() {
-		driveShifter.set(DoubleSolenoid.Value.kForward);
+		if (driveShifterDoubleSolenoid != null)
+			driveShifterDoubleSolenoid.set(lowGearVal);
+		else
+			driveShifter.set(lowGearBool);
 		gyroKp = gyroConfig.kPLowGear;
 		isLowGear = true;
 	}
@@ -214,13 +225,15 @@ public class TankDrive {
 	 * Shift PTO gearbox into neutral and engage the PTO
 	 */
 	public void engagePto() {
+		// no point in checking if using a double solenoid or not, because we
+		// have to use a double solenoid if we're using pto
 		if (ptoShifter != null && ptoSide != PTO_NONE) {
 			if (ptoShifting == LOW_TO_PTO) {
 				lowGear();
 			} else if (ptoShifting == HIGH_TO_PTO) {
 				highGear();
 			}
-			driveShifter.set(DoubleSolenoid.Value.kOff);
+			driveShifterDoubleSolenoid.set(DoubleSolenoid.Value.kOff);
 			Timer.delay(.1);
 			ptoShifter.set(true);
 		} else {
@@ -360,13 +373,20 @@ public class TankDrive {
 	 * This is used internally to run any code after the object is created
 	 */
 	private void onBuild() {
-		leftEncoder.start();
-		rightEncoder.start();
+		if (leftEncoder != null && rightEncoder != null) {
+			leftEncoder.start();
+			rightEncoder.start();
+		} else {
+			System.err
+					.println("One or more drive encoders are null, behavior may be unexpected");
+		}
 
-		StraightPID straight = new StraightPID();
-		straightPid = new PIDController(0.001, 0, 0.02, straight, straight);
-
-		straightPid.enable();
+		/*
+		 * StraightPID straight = new StraightPID(); straightPid = new
+		 * PIDController(0.001, 0, 0.02, straight, straight);
+		 * 
+		 * straightPid.enable();
+		 */
 	}
 
 	/**
@@ -457,6 +477,74 @@ public class TankDrive {
 		 * @return
 		 */
 		public Builder driveShifter(DoubleSolenoid driveShifter) {
+			drive.driveShifterDoubleSolenoid = driveShifter;
+			return this;
+		}
+
+		/**
+		 * Configure the main drive shifter
+		 * 
+		 * @param port
+		 *            the channel of the Solenoid on the solenoid module
+		 * @return
+		 */
+		public Builder driveShifter(int port) {
+			driveShifter(new Solenoid(port));
+			return this;
+		}
+
+		/**
+		 * Configure the high gear value for a DoubleSolenoid
+		 * 
+		 * @param val
+		 * @return
+		 */
+		public Builder highGear(DoubleSolenoid.Value val) {
+			drive.highGearVal = val;
+			return this;
+		}
+
+		/**
+		 * Configure the high gear value for a single Solenoid
+		 * 
+		 * @param val
+		 * @return
+		 */
+		public Builder highGear(boolean val) {
+			drive.highGearBool = val;
+			return this;
+		}
+
+		/**
+		 * Configure the low gear value for a DoubleSolenoid
+		 * 
+		 * @param val
+		 * @return
+		 */
+		public Builder lowGear(DoubleSolenoid.Value val) {
+			drive.lowGearVal = val;
+			return this;
+		}
+
+		/**
+		 * Configure the low gear value for a single Solenoid
+		 * 
+		 * @param val
+		 * @return
+		 */
+		public Builder lowGear(boolean val) {
+			drive.lowGearBool = val;
+			return this;
+		}
+
+		/**
+		 * Configure the main drive shifter
+		 * 
+		 * @param driveShifter
+		 *            a Solenoid that is the drive shifter
+		 * @return
+		 */
+		public Builder driveShifter(Solenoid driveShifter) {
 			drive.driveShifter = driveShifter;
 			return this;
 		}
