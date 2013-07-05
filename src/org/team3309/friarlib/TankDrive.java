@@ -58,11 +58,6 @@ public class TankDrive {
 	 */
 	public static final int HIGH_TO_PTO = 1;
 
-	/**
-	 * This is the member variable holding which side the PTO is on
-	 */
-	private int ptoShifting = -1;
-
 	private DoubleSolenoid.Value highGearVal = DoubleSolenoid.Value.kReverse;
 	private DoubleSolenoid.Value lowGearVal = DoubleSolenoid.Value.kForward;
 	private boolean highGearBool = false;
@@ -228,9 +223,9 @@ public class TankDrive {
 		// no point in checking if using a double solenoid or not, because we
 		// have to use a double solenoid if we're using pto
 		if (ptoShifter != null && ptoSide != PTO_NONE) {
-			if (ptoShifting == LOW_TO_PTO) {
+			if (ptoSide == LOW_TO_PTO) {
 				lowGear();
-			} else if (ptoShifting == HIGH_TO_PTO) {
+			} else if (ptoSide == HIGH_TO_PTO) {
 				highGear();
 			}
 			driveShifterDoubleSolenoid.set(DoubleSolenoid.Value.kOff);
@@ -666,11 +661,6 @@ public class TankDrive {
 
 		public Builder gyroConfig(GyroConfig config) {
 			drive.gyroConfig = config;
-			return this;
-		}
-
-		public Builder configurePto(int val) {
-			drive.ptoShifting = val;
 			return this;
 		}
 
