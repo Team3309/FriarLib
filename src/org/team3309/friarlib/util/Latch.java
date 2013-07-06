@@ -35,7 +35,7 @@ public class Latch {
 	 *         it is the same
 	 */
 	public boolean update(boolean newVal) {
-		boolean result = newVal && !lastVal;
+		boolean result = newVal == !lastVal;
 		lastVal = newVal;
 		return result;
 	}
