@@ -9,7 +9,22 @@ package org.team3309.friarlib.util;
  */
 public class Latch {
 
-	private boolean lastVal;
+	private boolean lastVal = false;
+	
+	/**
+	 * Create a new Latch with an initial value of false
+	 */
+	public Latch(){
+		lastVal = false;
+	}
+	
+	/**
+	 * Create a new Latch with a specified initial value
+	 * @param initialVal the initial value of the Latch
+	 */
+	public Latch(boolean initialVal){
+		lastVal = initialVal;
+	}
 
 	/**
 	 * Get the state of the latch after using this new value
