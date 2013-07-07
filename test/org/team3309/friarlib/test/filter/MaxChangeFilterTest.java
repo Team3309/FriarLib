@@ -2,15 +2,12 @@ package org.team3309.friarlib.test.filter;
 
 import static org.junit.Assert.*;
 
-import java.util.Random;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.team3309.friarlib.filter.MaxChangeFilter;
 
 public class MaxChangeFilterTest {
 	
-	private Random random = new Random();
 	private MaxChangeFilter filter = null;
 
 	@Before
