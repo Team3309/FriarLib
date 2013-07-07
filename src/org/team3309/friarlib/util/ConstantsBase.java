@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, FRC Team 3309 All rights reserved.
+ * Copyright (c) 2013, FRC Team 254 All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
