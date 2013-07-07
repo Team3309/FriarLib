@@ -1,21 +1,9 @@
-package org.team3309.friarlib.util;
-
-import com.sun.squawk.microedition.io.FileConnection;
-import java.io.DataInputStream;
-import java.io.IOException;
-import java.util.Vector;
-import javax.microedition.io.Connector;
-
-/**
- * This class is from Team 254's library.
- * Manages constant values used everywhere
- * in the robot code.
- * 
- * Copyright (c) 2013, Team 254 All rights reserved.
- * 
+/*
+ * Copyright (c) 2013, FRC Team 3309 All rights reserved.
+ *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
- * 
+ *
  * Redistributions of source code must retain the above copyright notice, this
  * list of conditions and the following disclaimer. Redistributions in binary
  * form must reproduce the above copyright notice, this list of conditions and
@@ -31,9 +19,16 @@ import javax.microedition.io.Connector;
  * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- * 
- * @author brandon.gonzalez.451@gmail.com (Brandon Gonzalez)
  */
+
+package org.team3309.friarlib.util;
+
+import com.sun.squawk.microedition.io.FileConnection;
+import java.io.DataInputStream;
+import java.io.IOException;
+import java.util.Vector;
+import javax.microedition.io.Connector;
+
 public abstract class ConstantsBase {
 	private static final Vector constants = new Vector();
 	private static final String CONSTANTS_FILE_PATH = "Constants.txt";
