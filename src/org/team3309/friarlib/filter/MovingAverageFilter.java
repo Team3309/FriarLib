@@ -60,11 +60,17 @@ public class MovingAverageFilter implements Filter {
 	 * @return a value filtered based on the last n samples
 	 */
 	public double update(double val) {
-		double sum = 0;
 		for (int i = 0; i < samples.length - 1; i++) {
 			samples[i] = samples[i + 1];
 		}
 		samples[samples.length - 1] = val;
+		
+		return get();
+	}
+	
+	@Override
+	public double get(){
+		double sum = 0;
 		for (int i = 0; i < samples.length; i++) {
 			sum += samples[i];
 		}

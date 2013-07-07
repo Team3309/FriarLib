@@ -75,5 +75,10 @@ public class IirFilter implements Filter {
 		previousFilteredValue = newFilteredValue;
 		return newFilteredValue;
 	}
+	
+	@Override
+	public double get(){
+		return previousFilteredValue;
+	}
 
 }

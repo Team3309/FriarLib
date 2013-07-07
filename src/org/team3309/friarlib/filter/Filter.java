@@ -18,4 +18,11 @@ public interface Filter {
 	 */
 	public double update(double val);
 
+	/**
+	 * Get the last value that the filter output
+	 * 
+	 * @return
+	 */
+	public double get();
+
 }

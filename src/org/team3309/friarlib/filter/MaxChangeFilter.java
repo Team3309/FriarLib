@@ -54,5 +54,10 @@ public class MaxChangeFilter implements Filter {
 		lastVal = filteredVal;
 		return filteredVal;
 	}
+	
+	@Override
+	public double get(){
+		return lastVal;
+	}
 
 }
