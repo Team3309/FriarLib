@@ -29,7 +29,7 @@ import java.io.IOException;
 import java.util.Vector;
 import javax.microedition.io.Connector;
 
-public abstract class ConstantsBase {
+public class ConstantsBase {
 	private static final Vector constants = new Vector();
 	private static final String CONSTANTS_FILE_PATH = "Constants.txt";
 
@@ -96,6 +96,11 @@ public abstract class ConstantsBase {
 	 * Handles an individual value used in the Constants class.
 	 */
 	public static class Constant {
+
+        static{
+            readConstantsFromFile();
+        }
+
 		private String name;
 		private double value;
 

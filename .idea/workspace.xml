@@ -1,40 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="SCOPE_TYPE" value="3" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="985d38de-220b-408b-ab31-e553b8768dfd" name="Default" comment="Add Copyright notice to files">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/copyright/Team3309_Copyright.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" />
+    <list default="true" id="985d38de-220b-408b-ab31-e553b8768dfd" name="Default" comment="">
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/team3309/friarlib/motors/BangBangController.java" afterPath="$PROJECT_DIR$/src/org/team3309/friarlib/motors/BangBangController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/team3309/friarlib/util/ConstantsBase.java" afterPath="$PROJECT_DIR$/src/org/team3309/friarlib/util/ConstantsBase.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/team3309/friarlib/filter/Filter.java" afterPath="$PROJECT_DIR$/src/org/team3309/friarlib/filter/Filter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/team3309/friarlib/motors/FilterableSpeedController.java" afterPath="$PROJECT_DIR$/src/org/team3309/friarlib/motors/FilterableSpeedController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/team3309/friarlib/FriarGyro.java" afterPath="$PROJECT_DIR$/src/org/team3309/friarlib/FriarGyro.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/team3309/friarlib/util/Functions.java" afterPath="$PROJECT_DIR$/src/org/team3309/friarlib/util/Functions.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/team3309/friarlib/filter/IirFilter.java" afterPath="$PROJECT_DIR$/src/org/team3309/friarlib/filter/IirFilter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/team3309/friarlib/util/Latch.java" afterPath="$PROJECT_DIR$/src/org/team3309/friarlib/util/Latch.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/org/team3309/friarlib/test/util/LatchTest.java" afterPath="$PROJECT_DIR$/test/org/team3309/friarlib/test/util/LatchTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/team3309/friarlib/filter/MaxChangeFilter.java" afterPath="$PROJECT_DIR$/src/org/team3309/friarlib/filter/MaxChangeFilter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/org/team3309/friarlib/test/filter/MaxChangeFilterTest.java" afterPath="$PROJECT_DIR$/test/org/team3309/friarlib/test/filter/MaxChangeFilterTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/team3309/friarlib/filter/MovingAverageFilter.java" afterPath="$PROJECT_DIR$/src/org/team3309/friarlib/filter/MovingAverageFilter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/org/team3309/friarlib/test/filter/MovingAverageFilterTest.java" afterPath="$PROJECT_DIR$/test/org/team3309/friarlib/test/filter/MovingAverageFilterTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/team3309/friarlib/exception/NotInitializedException.java" afterPath="$PROJECT_DIR$/src/org/team3309/friarlib/exception/NotInitializedException.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/team3309/friarlib/TankDrive.java" afterPath="$PROJECT_DIR$/src/org/team3309/friarlib/TankDrive.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/org/team3309/friarlib/test/TankDriveTest.java" afterPath="$PROJECT_DIR$/test/org/team3309/friarlib/test/TankDriveTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/team3309/friarlib/Turret.java" afterPath="$PROJECT_DIR$/src/org/team3309/friarlib/Turret.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/team3309/friarlib/util/Util.java" afterPath="$PROJECT_DIR$/src/org/team3309/friarlib/util/Util.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/team3309/friarlib/XboxController.java" afterPath="$PROJECT_DIR$/src/org/team3309/friarlib/XboxController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" afterPath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" />
     </list>
     <ignored path="Friarlib.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/fragment.java" changelist="985d38de-220b-408b-ab31-e553b8768dfd" time="1373224189334" ignored="false" />
-    <file path="/Dummy.txt" changelist="985d38de-220b-408b-ab31-e553b8768dfd" time="1373226511123" ignored="false" />
+    <file path="/Dummy.txt" changelist="985d38de-220b-408b-ab31-e553b8768dfd" time="1373226538189" ignored="false" />
     <file path="/AllTests.java" changelist="985d38de-220b-408b-ab31-e553b8768dfd" time="1373224246491" ignored="false" />
     <file path="/.name" changelist="985d38de-220b-408b-ab31-e553b8768dfd" time="1373224335897" ignored="false" />
     <file path="/LatchTest.java" changelist="985d38de-220b-408b-ab31-e553b8768dfd" time="1373226418245" ignored="false" />
     <file path="/a.java" changelist="985d38de-220b-408b-ab31-e553b8768dfd" time="1373225745071" ignored="false" />
     <file path="/sample.java" changelist="985d38de-220b-408b-ab31-e553b8768dfd" time="1373225744382" ignored="false" />
+    <file path="/ConstantsBase.java" changelist="985d38de-220b-408b-ab31-e553b8768dfd" time="1373226723571" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,9 +99,9 @@
       <file leaf-file-name="ConstantsBase.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/org/team3309/friarlib/util/ConstantsBase.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="39" selection-start="1565" selection-end="1565" vertical-scroll-proportion="0.17708333">
+            <state line="96" column="7" selection-start="3585" selection-end="3585" vertical-scroll-proportion="0.5263158">
               <folding>
-                <element signature="e#0#4088#0" expanded="true" />
+                <element signature="e#0#4144#0" expanded="true" />
                 <element signature="imports" expanded="true" />
               </folding>
             </state>
@@ -147,6 +130,7 @@
         <option value="$PROJECT_DIR$/test/org/team3309/friarlib/test/AllTests.java" />
         <option value="$PROJECT_DIR$/src/org/team3309/friarlib/TestClass.java" />
         <option value="$PROJECT_DIR$/test/org/team3309/friarlib/test/util/LatchTest.java" />
+        <option value="$PROJECT_DIR$/src/org/team3309/friarlib/util/ConstantsBase.java" />
       </list>
     </option>
   </component>
@@ -502,7 +486,11 @@
       <created>1373225536870</created>
       <updated>1373225536870</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Add Copyright notice to files">
+      <created>1373226562848</created>
+      <updated>1373226562849</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -512,6 +500,7 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -522,13 +511,12 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19850586" sideWeight="0.6703786" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32962137" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19850586" sideWeight="0.6002227" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3997773" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32962137" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -573,7 +561,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add IntelliJ project. Remove AllTests in favor of using a run configuration that automatically runs all tests in the package" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add Copyright notice to files" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -588,6 +576,7 @@
     <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
     <MESSAGE value="Add IntelliJ project. Remove AllTests in favor of using a run configuration that automatically runs all tests in the package" />
+    <MESSAGE value="Add Copyright notice to files" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -664,9 +653,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/org/team3309/friarlib/util/ConstantsBase.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="39" selection-start="1565" selection-end="1565" vertical-scroll-proportion="0.17708333">
+        <state line="96" column="7" selection-start="3585" selection-end="3585" vertical-scroll-proportion="0.5263158">
           <folding>
-            <element signature="e#0#4088#0" expanded="true" />
+            <element signature="e#0#4144#0" expanded="true" />
             <element signature="imports" expanded="true" />
           </folding>
         </state>
