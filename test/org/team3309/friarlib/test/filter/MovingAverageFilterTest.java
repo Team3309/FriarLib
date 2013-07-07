@@ -16,9 +16,16 @@ public class MovingAverageFilterTest {
 	}
 
 	@Test(expected = IllegalArgumentException.class)
-	public void testMovingAverageFilter() {
+	public void testMovingAverageFilterException() {
 		assertNotNull(new MovingAverageFilter(1));
 		new MovingAverageFilter(-1);
+	}
+	
+	@Test
+	public void testMovingAverageFilter(){
+		MovingAverageFilter f = new MovingAverageFilter(3, 2);
+		assertNotNull(f);
+		assertEquals(2, f.update(2), 0);
 	}
 
 	@Test
@@ -44,6 +51,12 @@ public class MovingAverageFilterTest {
 		
 		avg = filter.update(5);
 		assertEquals((double) (1+3+5)/3, avg, 0);
+	}
+	
+	@Test
+	public void testGet(){
+		double avg = filter.update(42);
+		assertEquals(avg, filter.get(), 0);
 	}
 
 }
