@@ -27,13 +27,29 @@ public class MovingAverageFilter implements Filter {
 	 *            the number of samples to average
 	 */
 	public MovingAverageFilter(int numSamples) {
-		if(numSamples <= 0){
-			throw new IllegalArgumentException("MovingAverageFilter: numSamples must be greater than 0");
+		this(numSamples, 0);
+	}
+
+	/**
+	 * Create a new moving average filter. Use this constructor if a starting
+	 * value of 0 for the average is unacceptable. Normally this wouldn't be an
+	 * issue because the 0s would only affect the filter for the first N
+	 * samples.
+	 * 
+	 * @param numSamples
+	 *            the number of samples to average
+	 * @param defaultVal
+	 *            the value that the arra is initialized to
+	 */
+	public MovingAverageFilter(int numSamples, double defaultVal) {
+		if (numSamples <= 0) {
+			throw new IllegalArgumentException(
+					"MovingAverageFilter: numSamples must be greater than 0");
 		}
 		this.nSamples = numSamples;
 		samples = new double[nSamples];
 		for (int i = 0; i < samples.length; i++) {
-			samples[i] = 0;
+			samples[i] = defaultVal;
 		}
 	}
 
@@ -45,10 +61,10 @@ public class MovingAverageFilter implements Filter {
 	 */
 	public double update(double val) {
 		double sum = 0;
-		for(int i=0; i<samples.length-1; i++){
-			samples[i] = samples[i+1];
+		for (int i = 0; i < samples.length - 1; i++) {
+			samples[i] = samples[i + 1];
 		}
-		samples[samples.length-1] = val;
+		samples[samples.length - 1] = val;
 		for (int i = 0; i < samples.length; i++) {
 			sum += samples[i];
 		}
