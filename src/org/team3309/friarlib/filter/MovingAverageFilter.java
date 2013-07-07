@@ -78,7 +78,7 @@ public class MovingAverageFilter implements Filter {
 
 	@Override
 	/**
-	 * Get a new filtered value
+	 * Get a new filtered value based on the input. For a MovingAverageFilter, this is based on the current input and the last n inputs.
 	 * @param val the latest measured value
 	 * @return a value filtered based on the last n samples
 	 */

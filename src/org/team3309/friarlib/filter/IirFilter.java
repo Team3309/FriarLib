@@ -88,7 +88,7 @@ public class IirFilter implements Filter {
 	}
 
 	/**
-	 * This returns a filtered value based on the input. For an IIR filter, this
+	 * Get a new filtered value based on the input. For an IIR filter, this
 	 * is based on every previous value.
 	 */
 	@Override
