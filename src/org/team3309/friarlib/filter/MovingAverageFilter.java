@@ -39,7 +39,7 @@ public class MovingAverageFilter implements Filter {
 	 * @param numSamples
 	 *            the number of samples to average
 	 * @param defaultVal
-	 *            the value that the arra is initialized to
+	 *            the value that the array is initialized to
 	 */
 	public MovingAverageFilter(int numSamples, double defaultVal) {
 		if (numSamples <= 0) {
