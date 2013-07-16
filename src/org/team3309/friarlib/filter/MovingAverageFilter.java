@@ -42,6 +42,7 @@ public class MovingAverageFilter implements Filter {
 
 	private int nSamples = 0;
 	private double[] samples = null;
+	private int i = 0;
 
 	/**
 	 * Create a new moving average filter
@@ -83,11 +84,11 @@ public class MovingAverageFilter implements Filter {
 	 * @return a value filtered based on the last n samples
 	 */
 	public double update(double val) {
-		for (int i = 0; i < samples.length - 1; i++) {
-			samples[i] = samples[i + 1];
-		}
-		samples[samples.length - 1] = val;
-		
+		samples[i] = val;
+		if(i >= samples.length-1)
+			i = 0;
+		else
+			i++;
 		return get();
 	}
 	
