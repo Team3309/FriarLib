@@ -56,6 +56,7 @@ public class MaxChangeFilterTest {
 
 	@Test
 	public void testGetMaxChange() {
+		filter.setMaxChange(10);
 		assertEquals(filter.getMaxChange(), 10, 0);
 	}
 
