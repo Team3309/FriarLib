@@ -2,9 +2,7 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="test"/>
-	<classpathentry kind="lib" path="networktables-crio.jar"/>
-	<classpathentry kind="lib" path="squawk.jar"/>
-	<classpathentry kind="lib" path="wpilibj.jar"/>
+	<classpathentry kind="src" path="WPILib/src"/>
 	<classpathentry kind="lib" path="lib/easymock-3.1.jar">
 		<attributes>
 			<attribute name="javadoc_location" value="jar:platform:/resource/FriarLib/lib/easymock-3.1-javadoc.jar!/"/>
@@ -12,8 +10,9 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="lib/cglib-nodep-2.2.3.jar"/>
 	<classpathentry kind="lib" path="lib/objenesis-1.3.jar"/>
+	<classpathentry kind="lib" path="WPILib/lib/networktables-crio.jar"/>
+	<classpathentry kind="lib" path="WPILib/lib/squawk.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/WPILib"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
