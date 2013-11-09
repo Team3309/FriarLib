@@ -30,7 +30,7 @@ import org.junit.Test;
 import org.team3309.friarlib.util.Latch;
 
 public class LatchTest {
-	
+
 	private Latch latch;
 
 	@Before

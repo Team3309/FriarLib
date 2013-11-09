@@ -28,9 +28,9 @@ package org.team3309.friarlib.filter;
  * a specified amount. An example use of this would be applying it to a joystick
  * value, so that the robot response is smoother and doesn't seem as jarring to
  * the drivers.
- * 
+ *
  * @author Vinnie
- * 
+ *
  */
 public class MaxChangeFilter implements Filter {
 
@@ -39,7 +39,7 @@ public class MaxChangeFilter implements Filter {
 
 	/**
 	 * Create a new MaxChangeFilter
-	 * 
+	 *
 	 * @param maxChange
 	 *            the maximum amount of change to allow - in 2013 we used a
 	 *            value of .05 for the drive joysticks
@@ -50,7 +50,7 @@ public class MaxChangeFilter implements Filter {
 
 	/**
 	 * Set the maximum amount of change allowed
-	 * 
+	 *
 	 * @param maxChange
 	 */
 	public void setMaxChange(double maxChange) {
@@ -59,7 +59,7 @@ public class MaxChangeFilter implements Filter {
 
 	/**
 	 * Get the maximum amount of change allowed
-	 * 
+	 *
 	 * @return the max amount of change
 	 */
 	public double getMaxChange() {
@@ -83,7 +83,7 @@ public class MaxChangeFilter implements Filter {
 		lastVal = filteredVal;
 		return filteredVal;
 	}
-	
+
 	@Override
 	public double get(){
 		return lastVal;

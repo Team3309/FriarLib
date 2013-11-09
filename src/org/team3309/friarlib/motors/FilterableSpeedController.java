@@ -28,7 +28,7 @@ import org.team3309.friarlib.filter.Filter;
 import edu.wpi.first.wpilibj.SpeedController;
 
 public class FilterableSpeedController implements SpeedController {
-	
+
 	private Filter mFilter = null;
 	private SpeedController controller = null;
 
@@ -36,15 +36,15 @@ public class FilterableSpeedController implements SpeedController {
 		this.controller = motor;
 		this.mFilter = filter;
 	}
-	
+
 	public void setFilter(Filter f){
 		this.mFilter = f;
 	}
-	
+
 	public void set(double x){
 		controller.set(mFilter.update(x));
 	}
-	
+
 	public void set(double x, byte syncGroup){
 		controller.set(mFilter.update(x), syncGroup);
 	}
@@ -63,5 +63,5 @@ public class FilterableSpeedController implements SpeedController {
 	public double get() {
 		return controller.get();
 	}
-	
+
 }

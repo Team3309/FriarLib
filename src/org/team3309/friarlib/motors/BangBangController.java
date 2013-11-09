@@ -31,9 +31,9 @@ import edu.wpi.first.wpilibj.SpeedController;
  * control. Bang-bang only works if the motor controller is jumpered for coast
  * mode instead of brake mode. This should be the defualt for Victors. Do not
  * use bang-bang with a Jaguar! Only Talons and Victors are supported.
- * 
+ *
  * @author Vinnie
- * 
+ *
  */
 public class BangBangController implements Runnable {
 
@@ -76,7 +76,7 @@ public class BangBangController implements Runnable {
 	public void disable() {
 		enabled = false;
 	}
-	
+
 	/**
 	 * Set the target speed of the wheel
 	 * @param rpm the rpm of the wheel, this is independent of the number of counts per revolution
@@ -92,7 +92,7 @@ public class BangBangController implements Runnable {
 	private int infinityCounts = 0;
 	private double lastSpeed = 0;
 
-	
+
 	@Override
 	public void run() {
 		while (true) {

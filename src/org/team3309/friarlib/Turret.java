@@ -36,9 +36,9 @@ import edu.wpi.first.wpilibj.SpeedController;
  * This class provides functionality to control the heading and azimuth of any
  * turret as long as the PID values for this class are configured properly. If
  * you need help tuning PID, there are many posts on ChiefDelphi about it.
- * 
+ *
  * @author Vinnie
- * 
+ *
  */
 public class Turret {
 
@@ -79,7 +79,7 @@ public class Turret {
 	/**
 	 * Configure the number of encoder counts per degree for the azimuth of the
 	 * turret.
-	 * 
+	 *
 	 * @param counts
 	 *            the number of counts
 	 */
@@ -90,7 +90,7 @@ public class Turret {
 	/**
 	 * Configure the number of encoder counts per degree for the heading of the
 	 * turret.
-	 * 
+	 *
 	 * @param counts
 	 */
 	public void setHeadingCountsPerDegree(double counts) {
@@ -99,7 +99,7 @@ public class Turret {
 
 	/**
 	 * Set the heading of the turret
-	 * 
+	 *
 	 * @param degrees
 	 *            the angle to set the heading to - not relative to the current
 	 *            position
@@ -110,7 +110,7 @@ public class Turret {
 
 	/**
 	 * Add or subtract from the heading of the turret
-	 * 
+	 *
 	 * @param delta
 	 *            the number of degrees to change by (may be negative)
 	 */
@@ -120,7 +120,7 @@ public class Turret {
 
 	/**
 	 * Set the azimuth of the turret
-	 * 
+	 *
 	 * @param degrees
 	 *            the angle to set the azimuth to - not relative to current
 	 *            position
@@ -131,7 +131,7 @@ public class Turret {
 
 	/**
 	 * Add or subtract from the azimuth of the turret
-	 * 
+	 *
 	 * @param delta
 	 *            the number of degrees to change by (may be negative)
 	 */
@@ -142,7 +142,7 @@ public class Turret {
 	/**
 	 * Get the azimuth of the turret. This value is relative to the position
 	 * where the encoders were last zeroed.
-	 * 
+	 *
 	 * @return the azimuth in degrees
 	 */
 	public double getAzimuth() {
@@ -152,7 +152,7 @@ public class Turret {
 	/**
 	 * Get the heading of the turret. This value is relative to the position
 	 * where the encoders were last zeroed.
-	 * 
+	 *
 	 * @return the heading in degrees
 	 */
 	public double getHeading() {
@@ -161,7 +161,7 @@ public class Turret {
 
 	/**
 	 * Set the PID constants for the Azimuth PID controller
-	 * 
+	 *
 	 * @param p
 	 * @param i
 	 * @param d
@@ -172,7 +172,7 @@ public class Turret {
 
 	/**
 	 * Set the PID constants for the Heading PID controller
-	 * 
+	 *
 	 * @param p
 	 * @param i
 	 * @param d

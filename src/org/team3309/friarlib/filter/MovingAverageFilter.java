@@ -25,28 +25,27 @@ package org.team3309.friarlib.filter;
 
 /**
  * Filters data according to a moving average.
- * 
+ *
  * A moving average filter outputs the average of the last n inputs given to the
  * filter. This tends to "smooth" out data given to the filter.
- * 
+ *
  * A larger value of n gives an average that "lags" more, but a smaller value is
  * more sensitive to noise.
- * 
+ *
  * This class simultaneously takes a data point to be filtered and returns the
  * current moving average using the method Update().
- * 
+ *
  * @author Vinnie
  */
 
 public class MovingAverageFilter implements Filter {
 
-	private int nSamples = 0;
 	private double[] samples = null;
 	private int i = 0;
 
 	/**
 	 * Create a new moving average filter
-	 * 
+	 *
 	 * @param numSamples
 	 *            the number of samples to average
 	 */
@@ -59,7 +58,7 @@ public class MovingAverageFilter implements Filter {
 	 * value of 0 for the average is unacceptable. Normally this wouldn't be an
 	 * issue because the 0s would only affect the filter for the first N
 	 * samples.
-	 * 
+	 *
 	 * @param numSamples
 	 *            the number of samples to average
 	 * @param defaultVal
@@ -70,8 +69,7 @@ public class MovingAverageFilter implements Filter {
 			throw new IllegalArgumentException(
 					"MovingAverageFilter: numSamples must be greater than 0");
 		}
-		this.nSamples = numSamples;
-		samples = new double[nSamples];
+		samples = new double[numSamples];
 		for (int i = 0; i < samples.length; i++) {
 			samples[i] = defaultVal;
 		}
@@ -91,7 +89,7 @@ public class MovingAverageFilter implements Filter {
 			i++;
 		return get();
 	}
-	
+
 	@Override
 	public double get(){
 		double sum = 0;

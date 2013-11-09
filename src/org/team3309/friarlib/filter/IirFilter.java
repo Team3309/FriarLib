@@ -29,9 +29,9 @@ package org.team3309.friarlib.filter;
  * has a configurable strength which determines how aggressive the filter is.
  * For more details, see http://en.wikipedia.org/wiki/Infinite_impulse_response
  * or http://www.chiefdelphi.com/forums/showpost.php?p=1132943&postcount=15
- * 
+ *
  * @author Vinnie
- * 
+ *
  */
 public class IirFilter implements Filter {
 
@@ -41,7 +41,7 @@ public class IirFilter implements Filter {
 
 	/**
 	 * Create a new InfiniteImpulseResponseFilter.
-	 * 
+	 *
 	 * @param strength
 	 *            the filter strength. Must be between -1 and 1
 	 */
@@ -54,7 +54,7 @@ public class IirFilter implements Filter {
 	 * necessary, unless the initial value must be something other than 0. If
 	 * the behavior of starting from 0 and (potentially slowly) increasing to
 	 * the actual value is not a problem, you can ignore this.
-	 * 
+	 *
 	 * @param val
 	 *            the initial value for the filter
 	 */
@@ -66,7 +66,7 @@ public class IirFilter implements Filter {
 	 * Set the strength of the filter. When the strength is 0, there is no
 	 * filtering. When the strength is 1, the filtered value can never change
 	 * from the initial value.
-	 * 
+	 *
 	 * @param strength
 	 */
 	public void setFilterStrength(double strength) {
@@ -80,7 +80,7 @@ public class IirFilter implements Filter {
 	 * Get the current filter strength. This method is provided if the user
 	 * wants to change the filter strength on the fly and needs to know what the
 	 * current value is.
-	 * 
+	 *
 	 * @return
 	 */
 	public double getFilterStrength() {
@@ -98,7 +98,7 @@ public class IirFilter implements Filter {
 		previousFilteredValue = newFilteredValue;
 		return newFilteredValue;
 	}
-	
+
 	@Override
 	public double get(){
 		return previousFilteredValue;

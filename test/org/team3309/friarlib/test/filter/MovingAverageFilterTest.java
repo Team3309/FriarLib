@@ -43,7 +43,7 @@ public class MovingAverageFilterTest {
 		assertNotNull(new MovingAverageFilter(1));
 		new MovingAverageFilter(-1);
 	}
-	
+
 	@Test
 	public void testMovingAverageFilter(){
 		MovingAverageFilter f = new MovingAverageFilter(3, 2);
@@ -56,26 +56,26 @@ public class MovingAverageFilterTest {
 		double avg;
 		filter.update(0);
 		filter.update(0);
-		
+
 		avg = filter.update(0);
 		assertEquals(0, avg, 0);
-		
+
 		avg = filter.update(1);
 		assertEquals((double) 1 / 3, avg, 0);
-		
+
 		avg = filter.update(1);
 		assertEquals((double) 2 / 3, avg, 0);
-		
+
 		avg = filter.update(1);
 		assertEquals((double) 1, avg, 0);
-		
+
 		avg = filter.update(3);
 		assertEquals((double) (1+1+3)/3, avg, 0);
-		
+
 		avg = filter.update(5);
 		assertEquals((double) (1+3+5)/3, avg, 0);
 	}
-	
+
 	@Test
 	public void testGet(){
 		double avg = filter.update(42);

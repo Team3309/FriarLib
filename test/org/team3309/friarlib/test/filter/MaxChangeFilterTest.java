@@ -30,7 +30,7 @@ import org.junit.Test;
 import org.team3309.friarlib.filter.MaxChangeFilter;
 
 public class MaxChangeFilterTest {
-	
+
 	private MaxChangeFilter filter = null;
 
 	@Before
@@ -64,7 +64,7 @@ public class MaxChangeFilterTest {
 	public void testUpdate() {
 		filter.update(0);
 		assertEquals(10, filter.update(200), 0);
-		
+
 		filter.update(0);
 		assertEquals(-10, filter.update(-100), 0);
 	}

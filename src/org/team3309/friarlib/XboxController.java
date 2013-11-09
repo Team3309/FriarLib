@@ -31,7 +31,7 @@ import edu.wpi.first.wpilibj.Joystick;
  * @author Vinnie
  */
 public class XboxController extends GenericHID{
-    
+
     private static final double DEADBAND = .1;
     private static final double DEADBAND_CUBED = .001;
 
@@ -51,14 +51,14 @@ public class XboxController extends GenericHID{
     public static final int BUTTON_B = 2;
     public static final int BUTTON_X = 3;
     public static final int BUTTON_Y = 4;
-    
+
     // Axis
     private static final int A_LEFT_X = 1;
     private static final int A_LEFT_Y = 2;
     private static final int A_TRIGGER = 3;
     private static final int A_RIGHT_X = 4;
     private static final int A_RIGHT_Y = 5;
-    
+
     private Joystick mController;
 
     public XboxController(int controller) {
@@ -203,7 +203,7 @@ public class XboxController extends GenericHID{
     public boolean getRawButton(int i) {
         return mController.getRawButton(i);
     }
-    
+
     private double scaleAxis(double val){
         if(Math.abs(val) < DEADBAND)
             return 0;
