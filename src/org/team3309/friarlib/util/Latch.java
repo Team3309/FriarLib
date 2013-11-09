@@ -63,4 +63,12 @@ public class Latch {
 		return result;
 	}
 
+    /**
+     * Get the value held in the latch
+     * @return the value in the latch
+     */
+    public boolean get(){
+        return lastVal;
+    }
+
 }
