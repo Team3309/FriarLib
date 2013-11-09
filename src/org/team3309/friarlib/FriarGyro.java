@@ -28,29 +28,27 @@ import edu.wpi.first.wpilibj.AnalogChannel;
 import edu.wpi.first.wpilibj.Timer;
 
 /**
- *
  * @author vmagr_000
  */
 public class FriarGyro {
-    
-    private AnalogChannel channel = null;
-    private double voltageOffset = 2.5;
-    
+
     //this stuff copied from WPILib gyro
     private static final int kOversampleBits = 10;
     private static final int kAverageBits = 0;
     private static final double kSamplesPerSecond = 50.0;
     private static final double kCalibrationSampleTime = 5.0;
     private static final double kVoltsPerDegreePerSecond = 0.007; //7mV per degree per sec
+    private AnalogChannel channel = null;
+    private double voltageOffset = 2.5;
     private AccumulatorResult result;
-    
-    public FriarGyro(int port){
+
+    public FriarGyro(int port) {
         channel = new AnalogChannel(port);
-        
+
         initGyro();
     }
-    
-     /**
+
+    /**
      * Initialize the gyro.
      * Calibrate the gyro by running for a number of samples and computing the center value for this
      * part. Then use the center value as the Accumulator center value for subsequent measurements.
@@ -60,7 +58,7 @@ public class FriarGyro {
      */
     private void initGyro() {
         result = new AccumulatorResult();
-        
+
         channel.setAverageBits(kAverageBits);
         channel.setOversampleBits(kOversampleBits);
         double sampleRate = kSamplesPerSecond * (1 << (kAverageBits + kOversampleBits));
@@ -73,45 +71,45 @@ public class FriarGyro {
 
         channel.getAccumulatorOutput(result);
 
-        int center = (int) ((double)result.value / (double)result.count + .5);
+        int center = (int) ((double) result.value / (double) result.count + .5);
 
-        voltageOffset = ((double)result.value / (double)result.count) - (double)center;
+        voltageOffset = ((double) result.value / (double) result.count) - (double) center;
 
         channel.setAccumulatorCenter(center);
 
         channel.setAccumulatorDeadband(0); ///< TODO: compute / parameterize this
         channel.resetAccumulator();
     }
-    
+
     /**
      * Get the rate of change of the angle
+     *
      * @return rate of change in degrees/second
      */
     @Deprecated
-    public double getAngularRateOfChange(){
-        double rate = (channel.getVoltage() - voltageOffset) / kVoltsPerDegreePerSecond; 
-        return rate;
+    public double getAngularRateOfChange() {
+        return getAngularVelocity();
     }
-    
+
     /**
      * Get the rate of change of the angle
+     *
      * @return rate of change in degrees/second
      */
-    public double getAngularVelocity(){
-    	double rate = (channel.getVoltage() - voltageOffset) / kVoltsPerDegreePerSecond; 
-        return rate;
+    public double getAngularVelocity() {
+        return (channel.getVoltage() - voltageOffset) / kVoltsPerDegreePerSecond;
     }
-    
+
     /**
      * Return the actual angle in degrees that the robot is currently facing.
-     *
+     * <p/>
      * The angle is based on the current accumulator value corrected by the oversampling rate, the
      * gyro type and the A/D calibration values.
      * The angle is continuous, that is can go beyond 360 degrees. This make algorithms that wouldn't
      * want to see a discontinuity in the gyro output as it sweeps past 0 on the second time around.
      *
      * @return the current heading of the robot in degrees. This heading is based on integration
-     * of the returned rate from the gyro.
+     *         of the returned rate from the gyro.
      */
     public double getAngle() {
         if (channel == null) {
@@ -121,19 +119,17 @@ public class FriarGyro {
 
             long value = result.value - (long) (result.count * voltageOffset);
 
-            double scaledValue = value * 1e-9 * channel.getLSBWeight() * (1 << channel.getAverageBits()) /
+            return value * 1e-9 * channel.getLSBWeight() * (1 << channel.getAverageBits()) /
                     (channel.getModule().getSampleRate() * kVoltsPerDegreePerSecond);
-
-            return scaledValue;
         }
     }
-    
+
     /**
      * Reset and recalibrate the gyro
      */
-    public void reset(){
+    public void reset() {
         voltageOffset = channel.getVoltage();
         channel.resetAccumulator();
     }
-    
+
 }
