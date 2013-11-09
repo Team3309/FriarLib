@@ -30,7 +30,7 @@ public class Functions {
 	 * @param timeSec time in seconds
 	 * @param periodSec period in seconds
 	 * @param amplitude amplitude of the function
-	 * @return
+	 * @return the result of the sine function with the specified parameters
 	 */
 	public static double sin(double timeSec, double periodSec, double amplitude){
 		return Math.sin(timeSec * 2 * Math.PI / periodSec) * amplitude;
@@ -41,10 +41,10 @@ public class Functions {
 	 * @param timeMs time in milliseconds
 	 * @param periodMs period in milliseconds
 	 * @param amplitude amplitude of the function
-	 * @return
+	 * @return the result of the sine function with the specified parameters
 	 */
 	public static double sin(long timeMs, int periodMs, double amplitude){
-		return sin(timeMs*1000, periodMs*1000, amplitude);
+		return sin((double) timeMs*1000, periodMs*1000, amplitude);
 	}
 	
 	/**
@@ -52,7 +52,7 @@ public class Functions {
 	 * @param timeSec time in seconds
 	 * @param periodSec period in seconds
 	 * @param amplitude amplitude of the function
-	 * @return
+	 * @return the result of the cosine function with the specified parameters
 	 */
 	public static double cos(double timeSec, double periodSec, double amplitude){
 		return Math.cos(timeSec * 2 * Math.PI / periodSec) * amplitude;
@@ -63,10 +63,10 @@ public class Functions {
 	 * @param timeMs time in milliseconds
 	 * @param periodMs period in milliseconds
 	 * @param amplitude amplitude of the function
-	 * @return
+	 * @return the result of the cosine function with the specified parameters
 	 */
 	public static double cos(long timeMs, int periodMs, double amplitude){
-		return cos(timeMs*1000, periodMs*1000, amplitude);
+		return cos((double) timeMs*1000, periodMs*1000, amplitude);
 	}
 
 
