@@ -41,17 +41,17 @@ public class Constant {
         ConstantsManager.addConstant(this);
     }
 
-    protected Constant(String name, double defaultVal) {
+    public Constant(String name, double defaultVal) {
         this(name);
         this.doubleVal = defaultVal;
     }
 
-    protected Constant(String name, double[] defaultList) {
+    public Constant(String name, double[] defaultList) {
         this(name);
         this.doubleList = defaultList;
     }
 
-    protected Constant(String name, boolean defaultVal) {
+    public Constant(String name, boolean defaultVal) {
         this(name);
         this.booleanVal = defaultVal;
     }
