@@ -56,6 +56,7 @@ public class ConstantsManager {
 
     /**
      * Load constants from a txt file on the cRIO
+     *
      * @param path
      * @throws IOException
      */
@@ -104,7 +105,12 @@ public class ConstantsManager {
                         System.err.println("Malformed line <" + line + "> empty string as value");
                         continue;
                     }
-                    ((Constant) constants.get(key)).set(Double.parseDouble(value));
+                    if (value.equals("true"))
+                        ((Constant) constants.get(key)).set(true);
+                    else if (value.equals("false"))
+                        ((Constant) constants.get(key)).set(false);
+                    else
+                        ((Constant) constants.get(key)).set(Double.parseDouble(value));
                 } else {
                     System.err.println("Constant <" + key + "> will not be used");
                 }

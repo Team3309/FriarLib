@@ -31,6 +31,8 @@ public class Constant {
 
     private double[] doubleList;
 
+    private boolean booleanVal;
+
     private Constant(String name) {
         if (name == null) {
             throw new NullPointerException("Constant name cannot be null");
@@ -49,6 +51,11 @@ public class Constant {
         this.doubleList = defaultList;
     }
 
+    protected Constant(String name, boolean defaultVal) {
+        this(name);
+        this.booleanVal = defaultVal;
+    }
+
     public String getName() {
         return name;
     }
@@ -61,12 +68,20 @@ public class Constant {
         return doubleList;
     }
 
+    public boolean getBoolean() {
+        return booleanVal;
+    }
+
     public void set(double val) {
         this.doubleVal = val;
     }
 
     public void set(double[] list) {
         this.doubleList = list;
+    }
+
+    public void set(boolean val){
+        this.booleanVal = val;
     }
 
     @Override
