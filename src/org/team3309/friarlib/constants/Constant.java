@@ -72,6 +72,10 @@ public class Constant {
         return booleanVal;
     }
 
+    public int getInt() {
+        return (int) getDouble();
+    }
+
     public void set(double val) {
         this.doubleVal = val;
     }
@@ -80,7 +84,7 @@ public class Constant {
         this.doubleList = list;
     }
 
-    public void set(boolean val){
+    public void set(boolean val) {
         this.booleanVal = val;
     }
 
